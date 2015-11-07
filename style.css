@@ -1,0 +1,100 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+body{
+	background-color: black;
+	color: white;
+	text-align: center;
+	align-content: center;
+	font-family: 'Trebuchet MS', 'Arial', 'Helvetica', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+
+
+}
+
+table{
+	border-collapse: collapse;
+	margin :auto;
+}
+button{
+	padding: 5px;
+	width: 270px;
+}
+#tetris td{
+	background-color: white;
+	height: 10px;
+	width: 14px;
+	text-align: center;
+	/*	vertical-align: top;*/
+	border: 1px solid #e8e8e8;
+}
+
+#scoreboard{
+	top: -350px;
+	position: relative;
+	display: inline-block;
+	padding: 0 15px;
+	min-width: 180px;
+	min-height:50px;
+	line-height: 34px;
+	color: #19283C;
+	text-align: center;
+	background: #F6F6F6;
+	border: 3px solid #19283C;
+}
+
+#tetris td.now{
+
+}
+
+#tetris td.freeze{
+	background-color: #5c5c5c;
+	border:none;
+}
+
+#tetris td.cyan{
+	background-color: #64d4d4;
+	border:none;
+}
+
+
+#tetris td.orange{
+	background-color: #f2ce56;
+	border:none;
+}
+
+#tetris td.blue{
+	background-color: #6868de;
+	border:none;
+}
+
+#tetris td.yellow{
+	background-color: #f5f564;
+	border:none;
+}
+
+#tetris td.red{
+	background-color: #ff6565;
+	border:none;
+}
+
+#tetris td.green{
+	background-color: #6ec349;
+	border:none;
+}
+
+#tetris td.purple{
+	background-color: #c75ac7;
+	border:none;
+}
+#tetris td.black{
+	background-color: #3e3e3e;
+	border:none;
+
+}
+#tetris td.userAdd{
+	background-color: #7c7c7c;
+	border:none;	
+}
