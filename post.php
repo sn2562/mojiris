@@ -26,7 +26,7 @@ $file =  __DIR__.'/log.txt';
 // 所有者に読み込み、書き込みの権限を与え、その他には何も許可しない。
 //echo chmod($file, 0666);
 // ファイルをオープンして既存のコンテンツを取得します
-$current = file_get_contents($file);
+//$current = file_get_contents($file);
 // 新しい人物をファイルに追加します
 
 
@@ -37,7 +37,7 @@ $current .=$name;
 $current .=$day;
 
 // 結果をファイルに書き出します
-file_put_contents($file, $current, FILE_APPEND | LOCK_EX);
+file_put_contents($file, $current,FILE_APPEND | LOCK_EX);
 //
 //
 //$id = $_POST['id'];
