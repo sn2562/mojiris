@@ -86,7 +86,7 @@ var gameStart = function(){
 	document.getElementById("scoreboard").style.visibility="hidden";
 	document.getElementById("startbutton").style.visibility="hidden";
 	//	document.getElementById("highscore").style.visibility="hidden";
-	interval = setInterval('draw()',150);
+	interval = setInterval('draw()',60);
 }
 
 var gameEnd = function(){

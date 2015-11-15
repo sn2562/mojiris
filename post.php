@@ -37,7 +37,7 @@ $current .=$name;
 $current .=$day;
 
 // 結果をファイルに書き出します
-file_put_contents($file, $current);
+file_put_contents($file, $current, FILE_APPEND | LOCK_EX);
 //
 //
 //$id = $_POST['id'];
