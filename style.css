@@ -44,6 +44,29 @@ button{
 	background: #F6F6F6;
 	border: 3px solid #19283C;
 }
+#highscore{
+	top: -550px;
+	left: 300;
+	position: relative;
+	display: inline-block;
+	padding: 0 15px;
+	min-width: 180px;
+	min-height:50px;
+	line-height: 34px;
+	color: #19283C;
+	text-align: center;
+	background: #F6F6F6;
+	border: 3px solid #19283C;
+}
+
+#highscore table{
+	border-collapse: separate;
+	color: #19283C;
+	margin: auto;
+}
+#highscore td{
+padding: 0px 10px;
+}
 
 #tetris td.now{
 

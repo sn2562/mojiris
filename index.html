@@ -10,12 +10,40 @@
 	</head>
 	<body>
 		<div id="contents">
-		<table id="tetris"></table>
-		<p>左右:←→　回転:↑</p>
-		<span id="scoreboard" style=""><p>item get!<br>のんのんんおんんん</p></span>
-		<div id="score">score : 0</div>
-		<div id="target"></div>
+			<table id="tetris"></table>
+			<p>左右:←→　回転:↑</p>
+			<span id="scoreboard"><p id="scoreboardcontents">スコア！</p>
+				<div id="userform"><input type="text" id="input_name" maxlength='11' placeholder='おなまえ'><input type="button" id="input_button" value="登録する" onclick="record()"></div>
+			</span>
+			<div id="score"></div>
+			<div id="target"></div>
+			<button type="button" id="startbutton" onclick="gameStart()">Start</button>
+		</div>
+		<span id="highscore" style=""><p>ベスト１０</p>
+			<table id="highScoreContents"></table>
 
-		<button type="button" id="startbutton" onclick="gameStart()">Start</button>
+		</span>
+
+		<input type="button" id="input_button" value="かきこむ" onclick="javatoPHP()">
+		<script>
+
+//			//javascriptからphpを実行
+//			var javatoPHP = function(){
+//				$.ajax({
+//					type: "POST",
+//					url: "./post.php",
+//					async: true, 
+//					data: {
+//						"score": score+",",
+//						"name": "name"+",",
+//						"day":"xx.xx.xx"
+//					},
+//					success: function(html){
+//						console.log("post.phpの呼び出しに成功しました");
+//					}
+//				});
+//			}
+
+		</script>
 	</body>
 </html>

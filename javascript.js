@@ -1,3 +1,5 @@
+//参考「【JavaScript】200行で作るテトリスのレシピ【HTML5】」 http://coderecipe.jp/recipe/iHjJBJx9Si/ 
+
 var width_num=20,height_num=55;// 横10、縦20マス
 var tetrisArray=[];//テトリスの盤面 0...ブロックなし,1...積みブロック,2...ユーザ操作中ブロック
 var tetrisColor=[];//テトリスの盤面の色を保存しておく
@@ -8,6 +10,8 @@ var currentX=0,currentY=0;//現在操作中のブロックの位置
 var score = 0;//スコア
 var canDraw=true;
 var playing=false;//ゲームの開始
+
+var bestTen=[];
 
 var blockSize=5;//ブロックの一辺の大きさ
 
@@ -64,12 +68,12 @@ var colors = [
 ];
 
 onload = function() {
-	document.getElementById("scoreboard").style.visibility="hidden";//はじめあスコアボードは隠しておく
+	document.getElementById("scoreboard").style.visibility="hidden";//はじめスコアボードは隠しておく
 
 	resetTetrisArray();//テトリスの盤面をリセット
 	newShape();//新しいブロック
 	drawHtmlStage();//ステージの描画
-
+	setHighScore();
 	//	interval = setInterval('draw()',50);
 };
 
@@ -80,7 +84,8 @@ var gameStart = function(){
 	//ボタンとスコアボードを消す
 	document.getElementById("startbutton").style.visibility="hidden";
 	document.getElementById("scoreboard").style.visibility="hidden";
-	//	document.getElementById("startbutton").style.display="none";
+	document.getElementById("startbutton").style.visibility="hidden";
+	//	document.getElementById("highscore").style.visibility="hidden";
 	interval = setInterval('draw()',150);
 }
 
@@ -89,9 +94,50 @@ var gameEnd = function(){
 	//スコアボードの中身を設定する
 	var html = "SCORE<br>score:"+score+"点";//表示HTML
 	//ボタンとスコアボードを表示する
-	document.getElementById("scoreboard").innerHTML = html;
+	document.getElementById("scoreboardcontents").innerHTML = html;
 	document.getElementById("startbutton").style.visibility="visible";
 	document.getElementById("scoreboard").style.visibility="visible";
+
+	//スコアがベストテン入していればおなまえ入力欄を表示する
+	if(score>Number(bestTen[9][0]))
+		document.getElementById("userform").style.visibility="visible";
+	else 
+		document.getElementById("userform").style.visibility="hidden";
+
+	clearInterval(interval);
+}
+
+var record = function(){
+	var nowScore = [score,document.getElementById("input_name").value,new Date()];
+	bestTen.push(nowScore);//点数を
+	bestTen = bestTen.sort(function(a,b){return(b[0]-a[0]);});//TODO : 点数が同じときは日付けでソートする
+
+	var html="";
+	for(var i=1;i<11;i++){//上位１０人を表示する
+		html +='<tr><td>'+i+'位</td><td>'+bestTen[i-1][0]+'</td><td>'+bestTen[i-1][1]+'</td></tr>';
+	}
+	document.getElementById("highScoreContents").innerHTML = html;
+
+	document.getElementById("scoreboard").style.visibility="hidden";
+	document.getElementById("userform").style.visibility="hidden";
+
+	//TODO : log.txtに書き込む
+	//javascriptからphpを実行
+	//	var javatoPHP = function(){
+	$.ajax({
+		type: "POST",
+		url: "./post.php",
+		async: true, 
+		data: {
+			"score": nowScore[0]+",",
+			"name": nowScore[1]+",",
+			"day": nowScore[2]
+		},
+		success: function(html){
+			console.log("post.phpの呼び出しに成功しました");
+		}
+	});
+	//	}
 }
 
 function stopTimer(){
@@ -119,6 +165,27 @@ var draw = function(){//毎秒呼び出される
 	canDraw = !canDraw;
 }
 
+var setHighScore = function(){
+	$.ajax({
+		url:'log.txt',
+		success: function(data){
+			var scores = data.split(/\r\n|\r|\n/);// 改行コードで分割
+			//TODO カンマで分割
+			for(var i=0;i<scores.length;i++){
+				scores[i]=scores[i].split(',');
+				console.log("i "+i+"  array " + scores[i]);
+			}
+			var Score = scores.sort(function(a,b){return(b[0]-a[0]);});//TODO : 点数が同じときは日付けでソートする
+
+			var html = "";//表示HTML
+			for(var i=1;i<11;i++){
+				html +='<tr><td>'+i+'位</td><td>'+scores[i-1][0]+'</td><td>'+scores[i-1][1]+'</td></tr>';
+				bestTen.push(scores[i-1]);//ベストテンを保存しておく
+			}
+			document.getElementById("highScoreContents").innerHTML = html;
+		}
+	});
+}
 
 
 var drawHtmlStage = function(){
