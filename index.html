@@ -11,11 +11,11 @@
 	<body>
 		<div id="contents">
 			<table id="tetris"></table>
-			<p>左右:←→　回転:↑</p>
+			<p>操作 / 左右:←→　回転:↑<br>横に一列揃えると100点加算されます<br>マウスを上手く使って高得点を出して下さい</p>
 			<span id="scoreboard"><p id="scoreboardcontents">スコア！</p>
 				<div id="userform"><input type="text" id="input_name" maxlength='11' placeholder='おなまえ'><input type="button" id="input_button" value="登録する" onclick="record()"></div>
 			</span>
-			<div id="score"></div>
+			<div id="score">score 000</div>
 			<div id="target"></div>
 			<button type="button" id="startbutton" onclick="gameStart()">Start</button>
 		</div>
